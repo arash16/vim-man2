@@ -57,5 +57,7 @@ nnoremap <buffer> g/ /^\s*\zs
 " }}}
 
 let b:undo_ftplugin = 'setlocal iskeyword<'
+let g:indentLine_enabled = 0
+let g:man_width = 100
 
 " vim:set ft=vim et sw=2:
