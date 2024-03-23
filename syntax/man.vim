@@ -2,6 +2,9 @@ if exists('b:current_syntax')
   finish
 endif
 
+" Problematic for tests
+" ls, date
+
 " Get the CTRL-H syntax to handle backspaced text
 runtime! syntax/ctrlh.vim
 
@@ -18,7 +21,7 @@ syntax match manString          /<[^⟩\n]*>/
 
 syntax match manNumber          /\v<([+-]?\d+(\.\d+)?(e\d+)?)(\s|,|\.|\)|$)@=/
 syntax match manNumber          /\v<([+-]?(0x)(\d|[a-f])+)(\s|,|\.|\)|$)@=q/
-syntax match manNumber          /\v\d+(\.\.|-|:)\d+/ " any ranges 1-100 or 1..100
+syntax match manNumber          /\v\d+((\.\.|-|:|\/)\d+)+/ " any ranges 1-100 or 1..100
 hi def link  manNumber          Number
 
 syntax match manReference       '\<\zs\(\f\|:\)\+(\([nlpo]\|\d[a-z]*\)\?)\ze\(\W\|$\)'
