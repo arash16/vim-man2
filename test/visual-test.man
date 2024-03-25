@@ -1,0 +1,73 @@
+Strings
+  'string' `string` ‘string’
+  "string" “string”
+  <string> ⟨string⟩
+  {string}
+  
+  (-save-stats/"-save-stats=cwd") or the directory of the output file ("-save-state=obj").
+  Don't let apostrophe ruin our highlights ('\')
+  
+  a "quoted string
+  broken into multiple lines" and a "simple" string
+
+Numbers
+  123, 123.11. 123.12e12 +11 -12 -12.33e12 -12.42e-2 (12), 33. p23 1. 23p 34
+  0xabc 0xabcdefg 0x123 0x0123456789abcdef
+  1:10 1-10 1..10 4/5/6 4/5 p23-23p
+
+Commands
+  $ man 2 stat
+  ~/.zshrc
+  /path/to/file
+  path/to/file
+  /path/re/
+  /usr/*
+  /re/
+  *.txt *.xy.zt *.gz1
+
+  not a valid path: TZ=US/en
+
+Variables
+  highlighted as variable:
+    snake_case camelCase PascalCase dashed-case-var UPPERCASE __variable
+    (snake_case) (camelCase) (PascalCase) (dashed-case-var) (UPPERCASE)
+    hello->world hello->world() (hello->world)
+    $variable $VARIABLE
+
+  should highlight as link:
+    snake_case(1) camelCase(1) PascalCase(1) dashed-case-var(1) UPPERCASE(1)
+
+Options
+  -p --parameter (--parameter)
+  +p +Param       sample explanations
+  %p %param       sample explanations
+  -p value        sample explanations
+  -p [value]      sample explanations
+  --param=value   sample explanations
+  --param=[value1 [value, ...]]
+  exec [-abc]
+  (some --param)
+
+URLs
+  http://google.com https://google.com 
+  mailto://google.com file://google.com
+  ftp://google.com gopher://google.com news://google.com
+  www.google.com google.com
+  <user@email.com>
+
+External Refs
+  IEEE 1333 / IEEE Rec 1222 / IEEE Std 122
+  RFC 1333 / ISO/IEC 123
+
+Nestings
+  Header
+    text is here
+  Numbered List
+    1. this
+    2. that
+  Unordered List
+    -  this
+    -  that
+  Option Values List
+    a  this
+    z  that
