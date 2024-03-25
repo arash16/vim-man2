@@ -5,9 +5,9 @@ endif
 " Problematic for tests
 " ls, date, lsblk, glob(7), man, ed, vi, clang, ld
 
-" documented conventions: man(7)
+" TODO: handle intrinsic styles inside man pages!
 
-" TODO: version-numbers, glob patterns, [str], [xx,[22],34,[22]], key=value, .txt
+" documented conventions: man(7)
 " Phrack Reader: https://github.com/0x4445565A/phrack-reader
 
 " keyword: x86-64
@@ -37,16 +37,6 @@ syntax match manCommand         /\v\W\zs\~?(\/(\w|[-_~*.])+)+\/?/ " any path sta
 syntax match manCommand         /\v\W\zs(\w|[-_~*.])+(\/(\w|[-_~*.])+){2,}\/?/ " any path with more than 2 slashes
 syntax match manCommand         /\v\W\zs\*(\.\w{,5})+/ " *.xyz
 
-syntax match manReference       '\<\zs\(\f\|:\)\+(\([nlpo]\|\d[a-z]*\)\?)\ze\(\W\|$\)'
-syntax match manTitle           '^\(\f\|:\)\+([0-9nlpo][a-z]*).*'
-syntax match manSectionHeading  '^[a-z][a-z0-9& ,.-]*[a-z]$'
-syntax match manHeaderFile      '\s\zs<\f\+\.h>\ze\(\W\|$\)'
-syntax match manURL             `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>"]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>"]+)[a-zA-Z0-9/]`
-syntax match manEmail           '<\?[a-zA-Z0-9_.+-]\+@[a-zA-Z0-9-]\+\.[a-zA-Z0-9-.]\+>\?'
-syntax match manHighlight       +`.\{-}''\?+
-
-syntax match manPageReference   /\v([\/|-]*(IEEE|RFC|ISO|IEC))+(\s|\n)*(std|rec|recommended|[0-9.: -]+)?(\s|\n)*[0-9.: -]*/
-
 syntax match manOptions         /\v\W\zs[%+-]{1,2}[^= \t\]\)\/]+/ " starting with dash, plus, %
 syntax match manOptions         /\v^\s+(\w|[!@#$%^&*-])\s{2,}/ " any single letter followed by 2 spaces
 
@@ -57,6 +47,20 @@ syntax match manVars            /\v\C<[a-z0-9_]+(_[a-z0-9_*]+)+[a-z0-9_*(]@!/ " 
 syntax match manVars            /\v<[a-z0-9]{3,}(-[a-z0-9*]{2,}){2,}[a-z0-9*(]@!/ " dash-cased
 syntax match manVars            /\v\C<[A-Z]?[a-z]+([A-Z][a-z]+)+[[:alnum:]_*(]@!/ " camelCase or PascalCase
 syntax match manVars            /\v\n@<!((IEEE|RFC|ISO|IEC|\/|-)+)@!<\C[A-Z_][A-Z0-9_*]{3,}[A-Z0-9_*(]@!/ " UPPER_CASE, but not refs
+
+" TODO highlight [optional] [parts[, 3, ...]]
+" TODO highlight versions
+" TODO highlight filenames.txt
+
+syntax match manReference       '\<\zs\(\f\|:\)\+(\([nlpo]\|\d[a-z]*\)\?)\ze\(\W\|$\)'
+syntax match manTitle           '^\(\f\|:\)\+([0-9nlpo][a-z]*).*'
+syntax match manSectionHeading  '^[a-z][a-z0-9& ,.-]*[a-z]$'
+syntax match manHeaderFile      '\s\zs<\f\+\.h>\ze\(\W\|$\)'
+syntax match manURL             `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>"]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>"]+)[a-zA-Z0-9/]`
+syntax match manEmail           '<\?[a-zA-Z0-9_.+-]\+@[a-zA-Z0-9-]\+\.[a-zA-Z0-9-.]\+>\?'
+syntax match manHighlight       +`.\{-}''\?+
+
+syntax match manPageReference   /\v([\/|-]*(IEEE|RFC|ISO|IEC))+(\s|\n)*(std|rec|recommended|[0-9.: -]+)?(\s|\n)*[0-9.: -]*/
 
 " below syntax elements valid for manpages 2 & 3 only
 if getline(1) =~ '^\(\f\|:\)\+([23][px]\?)'

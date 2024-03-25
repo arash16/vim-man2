@@ -1,3 +1,7 @@
+Run
+  $ cd ~/.vim/plugged/vim-man2
+  $ vim -R +":set ft=man" test/visual-test.man
+
 Strings
   'string' | `string` | ‘string’
   "string" | “string”
@@ -6,6 +10,8 @@ Strings
 
   quote inside:  "hello \" \' \` \\ world"
   quote outside: \" hello "world"
+
+  { nested { bracketing {}} test}
   
   (-save-stats/"-save-stats=cwd") or the directory of the output file ("-save-state=obj").
   Don't let apostrophe ruin our highlights ('\x')
