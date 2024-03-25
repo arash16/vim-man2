@@ -1,11 +1,14 @@
 Strings
-  'string' `string` ‘string’
-  "string" “string”
-  <string> ⟨string⟩
+  'string' | `string` | ‘string’
+  "string" | “string”
+  <string> | ⟨string⟩
   {string}
+
+  quote inside:  "hello \" \' \` \\ world"
+  quote outside: \" hello "world"
   
   (-save-stats/"-save-stats=cwd") or the directory of the output file ("-save-state=obj").
-  Don't let apostrophe ruin our highlights ('\')
+  Don't let apostrophe ruin our highlights ('\x')
   
   a "quoted string
   broken into multiple lines" and a "simple" string

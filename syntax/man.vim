@@ -17,14 +17,14 @@ runtime! syntax/ctrlh.vim
 
 syntax case ignore
 
-syntax match manString          /\v“([^”]|\n)*”/
-syntax match manString          /\v‘([^’]|\n)*’/
-syntax match manString          /\v`([^`]|\n)*`/
-syntax match manString          /\v"([^"]|\n)*"/
-syntax match manString          /\v\w@<!'[^'\n]*'/ " doesn't match quote after a word
-syntax match manString          /<[^>\n]*>/
-syntax match manString          /⟨[^⟩\n]*⟩/
-syntax match manString          /{[^}\n]*}/
+syntax match manString          /\v[^\\a-z0-9]\zs'([^'\n\\]|\\.)*'/ " doesn't match quote after a word
+syntax match manString          /\v[^\\]\zs"([^"\\]|\\.|\n)*"/
+syntax match manString          /\v[^\\]\zs“([^”\\]|\\.|\n)*”/
+syntax match manString          /\v[^\\]\zs`([^`\\]|\\.|\n)*`/
+syntax match manString          /\v[^\\]\zs‘([^’\\]|\\.|\n)*’/
+syntax match manString          /\v[^\\]\zs⟨([^⟩\n\\]|\\.)*⟩/
+syntax match manString          /\v[^\\]\zs\<([^\>\n\\]|\\.)*\>/
+syntax match manString          /\v[^\\]\zs\{([^\}\n\\]|\\.)*\}/
 hi def link manString           String
 
 syntax match manNumber          /\v\W\zs[\+-]?\d+(\.\d+)?(e\d+)?\ze(\W|$)/ " any floating number
@@ -47,7 +47,7 @@ syntax match manHighlight       +`.\{-}''\?+
 
 syntax match manPageReference   /\v([\/|-]*(IEEE|RFC|ISO|IEC))+(\s|\n)*(std|rec|recommended|[0-9.: -]+)?(\s|\n)*[0-9.: -]*/
 
-syntax match manOptions         /\v\W\zs[%+-]{1,2}[^= \t\])]+/ " starting with dash, plus, %
+syntax match manOptions         /\v\W\zs[%+-]{1,2}[^= \t\]\)\/]+/ " starting with dash, plus, %
 syntax match manOptions         /\v^\s+(\w|[!@#$%^&*-])\s{2,}/ " any single letter followed by 2 spaces
 
 syntax match manVars            /\v\w+\ze\=/ " value=...
